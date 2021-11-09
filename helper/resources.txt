@@ -1,0 +1,9 @@
+*xUnit framework*
+
+https://www.youtube.com/watch?v=Ch0sidrmCSc&list=WL&index=54&ab_channel=KarenOLoughlin
+
+https://www.youtube.com/watch?v=ub3P8c87cwk&list=WL&index=55&t=3283s&ab_channel=IAmTimCorey
+
+*Test cases*
+
+https://www.softwaretestingmaterial.com/test-case-template-with-explanation/
