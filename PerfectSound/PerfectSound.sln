@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerfectSound.Model", "Perfe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfectSound.WinForms", "PerfectSound.WinForms\PerfectSound.WinForms.csproj", "{5D2B778E-768D-4608-826D-5BCC3E6B530A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfectSoundUnitTest", "PerfectSoundUnitTest\PerfectSoundUnitTest.csproj", "{C7F0D12B-E6F1-4B3A-8F41-9746EBFFF36E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5D2B778E-768D-4608-826D-5BCC3E6B530A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D2B778E-768D-4608-826D-5BCC3E6B530A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D2B778E-768D-4608-826D-5BCC3E6B530A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7F0D12B-E6F1-4B3A-8F41-9746EBFFF36E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F0D12B-E6F1-4B3A-8F41-9746EBFFF36E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F0D12B-E6F1-4B3A-8F41-9746EBFFF36E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F0D12B-E6F1-4B3A-8F41-9746EBFFF36E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using User = PerfectSound.Database.User;
 
 namespace PerfectSound.Services
 {
@@ -49,8 +50,28 @@ namespace PerfectSound.Services
 
         public Model.Model.User Insert(UserUpsertRequest request)
         {
-            var entity = _mapper.Map<Database.User>(request);
+            var entity = _mapper.Map<Database.User>(request);            
 
+            GenerateSaltAndHash(entity, request);
+
+            AddUser(entity);
+
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Model.User>(entity);
+        }
+
+        public void AddUser(Database.User entity)
+        {
+            //if (string.IsNullOrWhiteSpace(entity.LastName))
+            //{
+            //    throw new ArgumentException("Invalid parameter ", "LastName");
+            //}
+            _context.Users.Add(entity);
+        }
+
+        private void GenerateSaltAndHash(Database.User entity, UserUpsertRequest request)
+        {
             if (request.Password != request.PasswordConfirm)
             {
                 throw new Exception("Password and password confirm not matched");
@@ -58,11 +79,6 @@ namespace PerfectSound.Services
 
             entity.PasswordSalt = PasswordHash.GenerateSalt();
             entity.PasswordHash = PasswordHash.GenerateHash(entity.PasswordSalt, request.Password);
-
-            _context.Users.Add(entity);
-            _context.SaveChanges();
-
-            return _mapper.Map<Model.Model.User>(entity);
         }
 
         public Model.Model.User Update(int Id, UserUpsertRequest request)
