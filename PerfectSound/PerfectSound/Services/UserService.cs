@@ -45,6 +45,11 @@ namespace PerfectSound.Services
         {
             var entity = _context.Users.Find(Id);
 
+            if (entity == null)
+            {
+                return null;
+            }
+
             return _mapper.Map<Model.Model.User>(entity);
         }
 
@@ -63,10 +68,10 @@ namespace PerfectSound.Services
 
         public void AddUser(Database.User entity)
         {
-            //if (string.IsNullOrWhiteSpace(entity.LastName))
-            //{
-            //    throw new ArgumentException("Invalid parameter ", "LastName");
-            //}
+            if (string.IsNullOrWhiteSpace(entity.LastName))
+            {
+                throw new ArgumentException("Invalid parameter ", "LastName");
+            }
             _context.Users.Add(entity);
         }
 

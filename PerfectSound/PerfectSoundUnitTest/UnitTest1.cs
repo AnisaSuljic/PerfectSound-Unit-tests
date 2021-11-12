@@ -1,4 +1,6 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 using PerfectSound.Controllers;
 using PerfectSound.Database;
 using PerfectSound.Interfaces;
@@ -7,6 +9,8 @@ using PerfectSound.Model.Requests.User;
 using PerfectSound.Services;
 using PerfectSound.WinForms;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Xunit;
 using User = PerfectSound.Model.Model.User;
@@ -15,39 +19,65 @@ namespace PerfectSoundUnitTest
 {
     public class UnitTest1
     {
-        public static IUserService _service {get;}
-        public static readonly PerfectSoundContext _context;
-        private static readonly IMapper _mapper;
+        public static PerfectSoundContext _context;
+        private static IMapper _mapper;
 
-        public APIService _UserService = new APIService("User");
-        public UserController _usercont = new UserController(_service);
-        public UserService _userService = new UserService(_context, _mapper);
+
+        public UserService _userService;
+
+        public UnitTest1()
+        {
+            if (_mapper == null)
+            {
+                var mappingConfig = new MapperConfiguration(mc =>
+                {
+                    mc.AddProfile(new PerfectSound.Mapper.AutoMapper());
+                });
+                IMapper mapper = mappingConfig.CreateMapper();
+                _mapper = mapper;
+            }
+        }
 
         [Fact]
         public void Test1()
-        {
-            //arrange
+        {         
 
-            UserUpsertRequest NewUser = new UserUpsertRequest
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "UserListContext")
+            .Options;
+
+            // Insert seed data into the database using one instance of the context
+            using (_context = new PerfectSoundContext(options))
             {
-                FirstName = "Naida",
-                LastName = "Merzic",
-                UserName = "MerzicNaida",
-                Email = "MerzicNaida@gmail.com",
-                Password = "123",
-                PasswordConfirm = "123",
-                Phone = "123456",
-                UserTypeId=1
-            };
-            //act
+                _context.Users.Add(new PerfectSound.Database.User {
+                    UserId = 1,
+                    FirstName = "Anisa",
+                    LastName = "Suljic",
+                    Email = "anisa@gmail.com",
+                    Phone = "123456",
+                    UserName = "AnisaSuljic",
+                    UserTypeId = 1
+                });
+               
+                _context.SaveChanges();
+
+            }
+            using (_context = new PerfectSoundContext(options))
+            {
+                UserService _UUSS = new UserService(_context, _mapper);
+                List<User> userssss = _UUSS.Get(null);
+
+                Assert.Equal(1, userssss.Count);
+            }
+            
 
             //var result = _UserService.Insert<User>(NewUser);
-            var result = _usercont.Post(NewUser);
+            //var result = _usercont.Post(NewUser);
             //var result = _userService.Insert(NewUser);
 
             //assert
 
-            Assert.NotNull(result);
+            //Assert.NotNull(result);
 
         }
 
@@ -68,9 +98,10 @@ namespace PerfectSoundUnitTest
                 Phone = phone,
                 UserTypeId = typeid
             };
-            
+                UserService _UUSS = new UserService(_context, _mapper);
+
             //assert & act
-            Assert.ThrowsAsync<ArgumentException>(param, () => _UserService.Insert<User>(NewUser));
+            Assert.Throws<ArgumentException>(param, () => _UUSS.Insert(NewUser));
         }
     }
 }
