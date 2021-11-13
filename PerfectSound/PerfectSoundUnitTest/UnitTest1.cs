@@ -98,10 +98,17 @@ namespace PerfectSoundUnitTest
                 Phone = phone,
                 UserTypeId = typeid
             };
-                UserService _UUSS = new UserService(_context, _mapper);
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "UserListContext")
+            .Options;
 
-            //assert & act
-            Assert.Throws<ArgumentException>(param, () => _UUSS.Insert(NewUser));
+            using (_context = new PerfectSoundContext(options))
+            {
+                UserService _UUSS = new UserService(_context, _mapper);
+                //assert & act
+                Assert.Throws<ArgumentException>(param, () => _UUSS.Insert(NewUser));
+            }
+
         }
     }
 }
