@@ -76,7 +76,7 @@ namespace PerfectSoundUnitTest
         //}
 
         [Theory]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "123", "123456", 1)]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1)]
         public void AddUser_EmptyFields_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid)
         {
@@ -109,13 +109,13 @@ namespace PerfectSoundUnitTest
         }
         
         [Theory]
-        [InlineData("", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "123", "123456", 1, "FirstName")]
-        [InlineData("Naida", "", "MerzicNaida", "MerzicNaida@gmail.com", "123", "123", "123456", 1, "LastName")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "", "123", "123", "123456", 1, "Email")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "", "123", "123456", 1, "Password")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "", "123456", 1, "PasswordConfirm")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "123", "", 1, "Phone")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "123", "123456", 0, "UserTypeId")]
+        [InlineData("", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1, "FirstName")]
+        [InlineData("Naida", "", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1, "LastName")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "", "Testing193!", "Testing193!", "123456", 1, "Email")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "", "Testing193!", "123456", 1, "Password")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "", "123456", 1, "PasswordConfirm")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "", 1, "Phone")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 0, "UserTypeId")]
         public void AddUser_EmptyFields_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -145,7 +145,7 @@ namespace PerfectSoundUnitTest
         }
 
         [Theory]
-        [InlineData("Anisa", "Suljic", "AnisaAnisa", "anisasuljic@gmail.com", "123", "123", "123456", 1, "PasswordConfirm")]
+        [InlineData("Anisa", "Suljic", "AnisaAnisa", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1, "PasswordConfirm")]
         public void AddUser_MatchPasswords_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -179,7 +179,7 @@ namespace PerfectSoundUnitTest
         }
         
         [Theory]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "012", "123456", 1, "PasswordConfirm")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "012", "123456", 1, "PasswordConfirm")]
         public void AddUser_MatchPasswords_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -209,7 +209,7 @@ namespace PerfectSoundUnitTest
         }
 
         [Theory]
-        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "123", "123", "123456", 1, "Username")]
+        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
         //[InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "012", "123456", 1, "PasswordConfirm")]
         public void AddUser_ExistingFields_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
@@ -266,8 +266,8 @@ namespace PerfectSoundUnitTest
         }
         
         [Theory]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123@gmail.com", "123", "123", "123456", 1, "Username")]
-        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida@gmail.com", "123", "012", "123456", 1, "Email")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida@gmail.com", "Testing193!", "012", "123456", 1, "Email")]
         public void AddUser_ExistingFields_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -321,6 +321,7 @@ namespace PerfectSoundUnitTest
             }
         }
         /*
+        
         [Theory]
         [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "123", "123", "123456", 1, "Username")]
         public void AddUser_CapitalLetter_ShouldWork(string firstName, string lastName, string userName,
@@ -376,7 +377,6 @@ namespace PerfectSoundUnitTest
                 Assert.NotNull(validUser);
             }
         }
-
         [Theory]
         [InlineData("naida", "Merzic", "MerzicNaida", "Merzic123@gmail.com", "123", "123", "123456", 1, "Username")]
         [InlineData("Naida", "merzic", "naidanaida", "MerzicNaida@gmail.com", "123", "012", "123456", 1, "Email")]
@@ -432,5 +432,119 @@ namespace PerfectSoundUnitTest
                 Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewUser));
             }
         }*/
+
+
+        [Theory]
+        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
+        public void AddUser_Format_ShouldWork(string firstName, string lastName, string userName,
+            string email, string pass, string passConf, string phone, int typeid, string param)
+        {
+
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "UserListContext9")
+            .Options;
+
+            // Insert seed data into the database using one instance of the context
+            using (_context = new PerfectSoundContext(options))
+            {
+                if (_context.Users.Count() == 0)
+                {
+                    var salt = PasswordHash.GenerateSalt();
+
+                    _context.Users.Add(new PerfectSound.Database.User
+                    {
+                        UserId = 1,
+                        FirstName = "Naida",
+                        LastName = "Merzic",
+                        Email = "MerzicNaida@gmail.com",
+                        Phone = "123456",
+                        UserName = "MerzicNaida1",
+                        UserTypeId = 1,
+                        PasswordSalt = salt,
+                        PasswordHash = PasswordHash.GenerateHash(salt, pass)
+                    });
+
+                    _context.SaveChanges();
+                }
+            }
+            //arange
+            UserUpsertRequest NewUser = new UserUpsertRequest
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                UserName = userName,
+                Email = email,
+                Password = pass,
+                PasswordConfirm = passConf,
+                Phone = phone,
+                UserTypeId = typeid
+            };
+            Thread.Sleep(1);
+
+            using (_context = new PerfectSoundContext(options))
+            {
+                UserService _UUSS = new UserService(_context, _mapper);
+                //assert & act
+                var validUser = _UUSS.Insert(NewUser);
+                Assert.NotNull(validUser);
+            }
+        }
+
+        [Theory]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail", "Testing193!", "Testing193!", "123456", 1, "Email")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail.com", "123", "123", "123456", 1, "Email")]
+        public void AddUser_Format_ShouldFail(string firstName, string lastName, string userName,
+            string email, string pass, string passConf, string phone, int typeid, string param)
+        {
+
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "UserListContext10")
+            .Options;
+
+            // Insert seed data into the database using one instance of the context
+            using (_context = new PerfectSoundContext(options))
+            {
+                if (_context.Users.Count() == 0)
+                {
+                    var salt = PasswordHash.GenerateSalt();
+
+                    _context.Users.Add(new PerfectSound.Database.User
+                    {
+                        UserId = 1,
+                        FirstName = "Naida",
+                        LastName = "Merzic",
+                        Email = "MerzicNaida@gmail.com",
+                        Phone = "123456",
+                        UserName = "MerzicNaida1",
+                        UserTypeId = 1,
+                        PasswordSalt = salt,
+                        PasswordHash = PasswordHash.GenerateHash(salt, pass)
+                    });
+
+                    _context.SaveChanges();
+                }
+            }
+
+            //arange
+            UserUpsertRequest NewUser = new UserUpsertRequest
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                UserName = userName,
+                Email = email,
+                Password = pass,
+                PasswordConfirm = passConf,
+                Phone = phone,
+                UserTypeId = typeid
+            };
+
+            using (_context = new PerfectSoundContext(options))
+            {
+                UserService _UUSS = new UserService(_context, _mapper);
+                //assert & act
+                Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewUser));
+            }
+        }
     }
 }
