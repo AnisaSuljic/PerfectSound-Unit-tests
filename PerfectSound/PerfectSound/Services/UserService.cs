@@ -9,6 +9,7 @@ using PerfectSound.Model.Requests.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using User = PerfectSound.Database.User;
 
@@ -76,7 +77,7 @@ namespace PerfectSound.Services
             }
             //else
             //{
-            //    if (!(int.Parse(entity.FirstName.Substring(1, 1)) >= 65 && int.Parse(entity.FirstName.Substring(1, 1)) <= 90))
+            //    if (!(int.Parse(entity.FirstName[0].ToString()) >= 65 && int.Parse(entity.FirstName[0].ToString()) <= 90))
             //    {
             //        throw new ArgumentException("Invalid parameter ");
 
@@ -117,6 +118,10 @@ namespace PerfectSound.Services
                     if (item.Email == entity.Email)
                         throw new ArgumentException("Invalid parameter ");
                 }
+                if (!Regex.IsMatch(entity.Email, "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"))
+                {
+                    throw new ArgumentException("Invalid parameter ");
+                }
             }
             if (string.IsNullOrWhiteSpace(entity.Phone))
             {
@@ -135,6 +140,13 @@ namespace PerfectSound.Services
             if (string.IsNullOrWhiteSpace(request.Password))
             {
                 throw new ArgumentException("Invalid parameter ", "Password");
+            }
+            else
+            {
+                if(!Regex.IsMatch(request.Password, "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"))
+                {
+                    throw new ArgumentException("Invalid parameter ");
+                }
             }
             if (string.IsNullOrWhiteSpace(request.PasswordConfirm))
             {
