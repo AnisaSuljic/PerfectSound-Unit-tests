@@ -68,18 +68,47 @@ namespace PerfectSound.Services
 
         public void AddUser(Database.User entity)
         {
+            if (string.IsNullOrWhiteSpace(entity.FirstName))
+            {
+                throw new ArgumentException("Invalid parameter ", "FirstName");
+            }
             if (string.IsNullOrWhiteSpace(entity.LastName))
             {
                 throw new ArgumentException("Invalid parameter ", "LastName");
             }
+            if (string.IsNullOrWhiteSpace(entity.UserName))
+            {
+                throw new ArgumentException("Invalid parameter ", "UserName");
+            }
+            if (string.IsNullOrWhiteSpace(entity.Email))
+            {
+                throw new ArgumentException("Invalid parameter ", "Email");
+            }
+            if (string.IsNullOrWhiteSpace(entity.Phone))
+            {
+                throw new ArgumentException("Invalid parameter ", "Phone");
+            }
+            if (entity.UserTypeId == 0)
+            {
+                throw new ArgumentException("Invalid parameter ", "UserTypeId");
+            }
+           
             _context.Users.Add(entity);
         }
 
         private void GenerateSaltAndHash(Database.User entity, UserUpsertRequest request)
         {
+            if (string.IsNullOrWhiteSpace(request.Password))
+            {
+                throw new ArgumentException("Invalid parameter ", "Password");
+            }
+            if (string.IsNullOrWhiteSpace(request.PasswordConfirm))
+            {
+                throw new ArgumentException("Invalid parameter ", "PasswordConfirm");
+            }
             if (request.Password != request.PasswordConfirm)
             {
-                throw new Exception("Password and password confirm not matched");
+                throw new ArgumentException("Password and password confirm not matched ", "PasswordConfirm");
             }
 
             entity.PasswordSalt = PasswordHash.GenerateSalt();
