@@ -34,6 +34,46 @@ namespace PerfectSound.Services
 
         }
 
-    
+        public override Person Insert(PersonUpsertRequest request)
+        {
+            var entity = _mapper.Map<Database.Person>(request);
+
+            AddingPerson(entity);
+
+            return _mapper.Map<Person>(entity);
+        }
+
+        private void AddingPerson( Database.Person entity)
+        {
+            if (string.IsNullOrWhiteSpace(entity.FirstName))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (string.IsNullOrWhiteSpace(entity.LastName))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (string.IsNullOrWhiteSpace(entity.Biography))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (entity.Photo.Length == 0)
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (string.IsNullOrWhiteSpace(entity.PlaceOfBirth))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (entity.GenderId == 0)
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            _context.Set<Database.Person>().Add(entity);
+            _context.SaveChanges();
+
+        }
+
+
     }
 }

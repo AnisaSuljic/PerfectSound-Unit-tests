@@ -58,8 +58,7 @@ namespace PerfectSound.Services
         {
             var entity = _mapper.Map<Database.SongAndPodcast>(request);
 
-            _context.SongAndPodcasts.Add(entity);
-            _context.SaveChanges();
+            AddingSongsPodcasts(entity);
 
             foreach (var genre in request.GenreIDList)
             {
@@ -72,6 +71,26 @@ namespace PerfectSound.Services
             return _mapper.Map<SongAndPodcast> (entity);
         }
 
-
+        private void AddingSongsPodcasts(Database.SongAndPodcast entity)
+        {
+            if (string.IsNullOrWhiteSpace(entity.Title))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (string.IsNullOrWhiteSpace(entity.Text))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (string.IsNullOrWhiteSpace(entity.RunningTime))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (entity.Poster.Length == 0)
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            _context.SongAndPodcasts.Add(entity);
+            _context.SaveChanges();
+        }
     }
 }
