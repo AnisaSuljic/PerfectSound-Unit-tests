@@ -68,21 +68,55 @@ namespace PerfectSound.Services
 
         public void AddUser(Database.User entity)
         {
+            
+            
             if (string.IsNullOrWhiteSpace(entity.FirstName))
             {
                 throw new ArgumentException("Invalid parameter ", "FirstName");
             }
+            //else
+            //{
+            //    if (!(int.Parse(entity.FirstName.Substring(1, 1)) >= 65 && int.Parse(entity.FirstName.Substring(1, 1)) <= 90))
+            //    {
+            //        throw new ArgumentException("Invalid parameter ");
+
+            //    }
+            //}
             if (string.IsNullOrWhiteSpace(entity.LastName))
             {
                 throw new ArgumentException("Invalid parameter ", "LastName");
             }
+            //else
+            //{
+            //    if (!(int.Parse(entity.LastName.Substring(1, 1)) >= 65 && int.Parse(entity.LastName.Substring(1, 1)) <= 90))
+            //    {
+            //        throw new ArgumentException("Invalid parameter ");
+
+            //    }
+            //}
             if (string.IsNullOrWhiteSpace(entity.UserName))
             {
                 throw new ArgumentException("Invalid parameter ", "UserName");
             }
+            else
+            {
+                foreach (var item in _context.Users)
+                {
+                    if (item.UserName == entity.UserName)
+                        throw new ArgumentException("Invalid parameter ");
+                }
+            }
             if (string.IsNullOrWhiteSpace(entity.Email))
             {
                 throw new ArgumentException("Invalid parameter ", "Email");
+            }
+            else
+            {
+                foreach (var item in _context.Users)
+                {
+                    if (item.Email == entity.Email)
+                        throw new ArgumentException("Invalid parameter ");
+                }
             }
             if (string.IsNullOrWhiteSpace(entity.Phone))
             {
