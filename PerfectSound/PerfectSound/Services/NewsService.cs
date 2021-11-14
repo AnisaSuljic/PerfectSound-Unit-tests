@@ -30,5 +30,36 @@ namespace PerfectSound.Services
             
             return _mapper.Map<List<News>>(_searchSet.ToList());
         }
+        public override News Insert(NewsUpsertRequest request)
+        {
+            var entity = _mapper.Map<Database.News>(request);
+
+            AddingNews(entity);
+
+            return _mapper.Map<News>(entity);
+        }
+
+        private void AddingNews(Database.News entity)
+        {
+            if (string.IsNullOrWhiteSpace(entity.Title))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (string.IsNullOrWhiteSpace(entity.SubTitle))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (string.IsNullOrWhiteSpace(entity.Content))
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            if (entity.CoverPhoto.Length == 0)
+            {
+                throw new ArgumentException("Invalid parameter ");
+            }
+            _context.Set<Database.News>().Add(entity);
+            _context.SaveChanges();
+
+        }
     }
 }
