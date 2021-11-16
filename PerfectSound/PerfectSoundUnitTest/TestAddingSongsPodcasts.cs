@@ -42,7 +42,7 @@ namespace PerfectSoundUnitTest
             {
                 Title = "Perfect",
                 Text = "Perfect",
-                RunningTime = "00:00",
+                RunningTime = "00:00:00",
                 ReleaseDate = new DateTime(2021, 11, 01, 1, 1, 1),
                 Budget = Convert.ToDecimal(2.5),
                 Poster = new byte[1],
@@ -65,8 +65,8 @@ namespace PerfectSoundUnitTest
             }
         }
         [Theory]
-        [InlineData("", "Sound", "00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
-        [InlineData("Perfect", "", "00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
+        [InlineData("", "Sound", "00:00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
+        [InlineData("Perfect", "", "00:00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
         [InlineData("Perfect", "Sound", "", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
         public void AddNewSongsPodcast_ShouldFail(string title, string text, string time, DateTime datum, decimal budget,
             byte[] slika, int id, bool Is)
@@ -96,7 +96,7 @@ namespace PerfectSoundUnitTest
             }
         }
         [Theory]
-        [InlineData("Sound", "Perfect", "00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
+        [InlineData("Sound", "Perfect", "00:00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
 
         //[InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "012", "123456", 1, "PasswordConfirm")]
         public void AddSongsAndPodcast_ExistingFields_ShouldWork(string title, string text, string time, DateTime datum, decimal budget,
@@ -116,7 +116,7 @@ namespace PerfectSoundUnitTest
                     {
                         Title = "Perfect",
                         Text = "Perfect",
-                        RunningTime = "00:00",
+                        RunningTime = "00:00:00",
                         ReleaseDate = new DateTime(2021, 11, 01, 1, 1, 1),
                         Budget = Convert.ToDecimal(2.5),
                         Poster = new byte[1],
@@ -151,7 +151,7 @@ namespace PerfectSoundUnitTest
         }
 
         [Theory]
-        [InlineData("Perfect", "", "00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
+        [InlineData("Perfect", "", "00:00:00", "2021-11-1", 2.5, new byte[] { 0 }, 1, true)]
 
         public void AddSongsAndPodcasts_ExistingFields_ShouldFail(string title, string text, string time, DateTime datum, decimal budget,
             byte[] slika, int id, bool Is)
@@ -170,7 +170,7 @@ namespace PerfectSoundUnitTest
                     {
                         Title = "Perfect",
                         Text = "Perfect",
-                        RunningTime = "00:00",
+                        RunningTime = "00:00:00",
                         ReleaseDate = new DateTime(2021, 11, 01, 1, 1, 1),
                         Budget = Convert.ToDecimal(2.5),
                         Poster = new byte[1],

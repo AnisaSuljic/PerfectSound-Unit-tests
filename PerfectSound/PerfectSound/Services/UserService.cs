@@ -68,33 +68,31 @@ namespace PerfectSound.Services
         }
 
         public void AddUser(Database.User entity)
-        {
-            
-            
+        {         
             if (string.IsNullOrWhiteSpace(entity.FirstName))
             {
                 throw new ArgumentException("Invalid parameter ", "FirstName");
             }
-            //else
-            //{
-            //    if (!(int.Parse(entity.FirstName[0].ToString()) >= 65 && int.Parse(entity.FirstName[0].ToString()) <= 90))
-            //    {
-            //        throw new ArgumentException("Invalid parameter ");
+            else
+            {
+                if (!(entity.FirstName[0]>= 65 && entity.FirstName[0] <= 90))
+                {
+                    throw new ArgumentException("Invalid parameter ");
 
-            //    }
-            //}
+                }
+            }
             if (string.IsNullOrWhiteSpace(entity.LastName))
             {
                 throw new ArgumentException("Invalid parameter ", "LastName");
             }
-            //else
-            //{
-            //    if (!(int.Parse(entity.LastName.Substring(1, 1)) >= 65 && int.Parse(entity.LastName.Substring(1, 1)) <= 90))
-            //    {
-            //        throw new ArgumentException("Invalid parameter ");
+            else
+            {
+                if (!(entity.LastName[0] >= 65 && entity.LastName[0] <= 90))
+                {
+                    throw new ArgumentException("Invalid parameter ");
 
-            //    }
-            //}
+                }
+            }
             if (string.IsNullOrWhiteSpace(entity.UserName))
             {
                 throw new ArgumentException("Invalid parameter ", "UserName");
@@ -203,12 +201,12 @@ namespace PerfectSound.Services
             var entity = await _context.Users.Include(u=>u.UserType).FirstOrDefaultAsync(x => x.UserName == username);
 
             if (entity == null)
-                throw new UserException("Invalid username or password.");
+                throw new ArgumentException("Invalid username or password. User does not exist");
 
             var hash = PasswordHash.GenerateHash(entity.PasswordSalt, password);
 
             if (hash != entity.PasswordHash)
-                throw new UserException("Invalid username or password.");
+                throw new ArgumentException("Invalid username or password.");
 
             return _mapper.Map<Model.Model.User>(entity);
         }
