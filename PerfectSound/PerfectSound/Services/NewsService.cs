@@ -45,6 +45,15 @@ namespace PerfectSound.Services
             {
                 throw new ArgumentException("Invalid parameter ");
             }
+            else
+            {
+                foreach (var item in _context.News)
+                {
+                    if (item.Title == entity.Title)
+                        throw new ArgumentException("Invalid parameter ");
+
+                }
+            }
             if (string.IsNullOrWhiteSpace(entity.SubTitle))
             {
                 throw new ArgumentException("Invalid parameter ");
@@ -57,6 +66,7 @@ namespace PerfectSound.Services
             {
                 throw new ArgumentException("Invalid parameter ");
             }
+
             _context.Set<Database.News>().Add(entity);
             _context.SaveChanges();
 

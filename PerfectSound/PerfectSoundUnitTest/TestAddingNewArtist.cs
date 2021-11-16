@@ -208,5 +208,68 @@ namespace PerfectSoundUnitTest
                 Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewArtist));
             }
         }
+
+        [Theory]
+        [InlineData("Selena", "Gomez", new byte[] { 0 }, "biografija", "2021-11-1", "2021-11-1", "Mostar", 2)]
+        public void AddUser_CapitalLetter_ShouldWork(string ime, string prezime, byte[] slika, string biografija, DateTime datum1, DateTime datum2,
+            string mjesto, int id)
+        {
+
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "ArtistListContext7")
+            .Options;
+
+            //arange
+            PersonUpsertRequest NewArtist = new PersonUpsertRequest
+            {
+                FirstName = ime,
+                LastName = prezime,
+                Photo = slika,
+                Biography = biografija,
+                DateOfBirth = datum1,
+                PlaceOfBirth = mjesto,
+                DateOfDeath = datum2,
+                GenderId = id
+            };
+
+            using (_context = new PerfectSoundContext(options))
+            {
+                PersonService _UUSS = new PersonService(_context, _mapper);
+                //assert & act
+                var validUser = _UUSS.Insert(NewArtist);
+                Assert.NotNull(validUser);
+            }
+        }
+        [Theory]
+        [InlineData("selena", "Gomez", new byte[] { 0 }, "biografija", "2021-11-1", "2021-11-1", "Mostar", 2)]
+        [InlineData("Selena", "gomez", new byte[] { 0 }, "biografija", "2021-11-1", "2021-11-1", "Mostar", 2)]
+        public void AddUser_CapitalLetter_ShouldFail(string ime, string prezime, byte[] slika, string biografija, DateTime datum1, DateTime datum2,
+            string mjesto, int id)
+        {
+
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "ArtistListContext7")
+            .Options;
+
+            //arange
+            PersonUpsertRequest NewArtist = new PersonUpsertRequest
+            {
+                FirstName = ime,
+                LastName = prezime,
+                Photo = slika,
+                Biography = biografija,
+                DateOfBirth = datum1,
+                PlaceOfBirth = mjesto,
+                DateOfDeath = datum2,
+                GenderId = id
+            };
+
+            using (_context = new PerfectSoundContext(options))
+            {
+                PersonService _UUSS = new PersonService(_context, _mapper);
+                //assert & act
+                Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewArtist));
+            }
+        }
     }
 }

@@ -49,9 +49,25 @@ namespace PerfectSound.Services
             {
                 throw new ArgumentException("Invalid parameter ");
             }
+            else
+            {
+                if (!(entity.FirstName[0] >= 65 && entity.FirstName[0] <= 90))
+                {
+                    throw new ArgumentException("Invalid parameter ");
+
+                }
+            }
             if (string.IsNullOrWhiteSpace(entity.LastName))
             {
                 throw new ArgumentException("Invalid parameter ");
+            }
+            else
+            {
+                if (!(entity.LastName[0] >= 65 && entity.LastName[0] <= 90))
+                {
+                    throw new ArgumentException("Invalid parameter ");
+
+                }
             }
             if (string.IsNullOrWhiteSpace(entity.Biography))
             {
