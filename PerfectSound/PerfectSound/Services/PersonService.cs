@@ -69,11 +69,17 @@ namespace PerfectSound.Services
             {
                 throw new ArgumentException("Invalid parameter ");
             }
+            else
+            {
+                foreach (var item in _context.People)
+                {
+                    if (item.FirstName == entity.FirstName && item.LastName ==entity.LastName)
+                        throw new ArgumentException("Invalid parameter ");
+                }
+            }
             _context.Set<Database.Person>().Add(entity);
             _context.SaveChanges();
 
         }
-
-
     }
 }
