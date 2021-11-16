@@ -5,6 +5,7 @@ using PerfectSound.Model.Requests.SongAndPodcast;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PerfectSound.Services
@@ -77,6 +78,14 @@ namespace PerfectSound.Services
             {
                 throw new ArgumentException("Invalid parameter ");
             }
+            else
+            {
+                foreach (var item in _context.SongAndPodcasts)
+                {
+                    if (item.Title == entity.Title)
+                        throw new ArgumentException("Invalid parameter ");
+                }
+            }
             if (string.IsNullOrWhiteSpace(entity.Text))
             {
                 throw new ArgumentException("Invalid parameter ");
@@ -84,6 +93,13 @@ namespace PerfectSound.Services
             if (string.IsNullOrWhiteSpace(entity.RunningTime))
             {
                 throw new ArgumentException("Invalid parameter ");
+            }
+            else
+            {
+                if (!Regex.IsMatch(entity.RunningTime, "^\\d+:\\d{2}:\\d{2}$"))
+                {
+                    throw new ArgumentException("Invalid parameter ");
+                }
             }
             if (entity.Poster.Length == 0)
             {
