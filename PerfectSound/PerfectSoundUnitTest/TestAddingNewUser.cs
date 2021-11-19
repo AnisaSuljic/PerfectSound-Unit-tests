@@ -320,72 +320,7 @@ namespace PerfectSoundUnitTest
                 Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewUser));
             }
         }
-        /*
-        [Theory]
-        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1)]
-        public void AddUser_CapitalLetter_ShouldWork(string firstName, string lastName, string userName,
-            string email, string pass, string passConf, string phone, int typeid)
-        {
-
-            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
-            .UseInMemoryDatabase(databaseName: "UserListContext5")
-            .Options;
-
-            //arange
-            UserUpsertRequest NewUser = new UserUpsertRequest
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                UserName = userName,
-                Email = email,
-                Password = pass,
-                PasswordConfirm = passConf,
-                Phone = phone,
-                UserTypeId = typeid
-            };
-            Thread.Sleep(1);
-
-            using (_context = new PerfectSoundContext(options))
-            {
-                UserService _UUSS = new UserService(_context, _mapper);
-                //assert & act
-                var validUser = _UUSS.Insert(NewUser);
-                Assert.NotNull(validUser);
-            }
-        }
         
-        [Theory]
-        [InlineData("naida", "Merzic", "MerzicNaida", "Merzic123@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
-        [InlineData("Maida", "merzic", "naidanaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Email")]
-        public void AddUser_CapitalLetter_ShouldFail(string firstName, string lastName, string userName,
-            string email, string pass, string passConf, string phone, int typeid, string param)
-        {
-
-            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
-            .UseInMemoryDatabase(databaseName: "UserListContext6")
-            .Options;
-
-            //arange
-            UserUpsertRequest NewUser = new UserUpsertRequest
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                UserName = userName,
-                Email = email,
-                Password = pass,
-                PasswordConfirm = passConf,
-                Phone = phone,
-                UserTypeId = typeid
-            };
-
-            using (_context = new PerfectSoundContext(options))
-            {
-                UserService _UUSS = new UserService(_context, _mapper);
-                //assert & act
-                Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewUser));
-            }
-        }
-*/
         
         [Theory]
         [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
@@ -498,5 +433,71 @@ namespace PerfectSoundUnitTest
                 Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewUser));
             }
         }
+        /*
+        [Theory]
+        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1)]
+        public void AddUser_CapitalLetter_ShouldWork(string firstName, string lastName, string userName,
+            string email, string pass, string passConf, string phone, int typeid)
+        {
+
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "UserListContext5")
+            .Options;
+
+            //arange
+            UserUpsertRequest NewUser = new UserUpsertRequest
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                UserName = userName,
+                Email = email,
+                Password = pass,
+                PasswordConfirm = passConf,
+                Phone = phone,
+                UserTypeId = typeid
+            };
+            Thread.Sleep(1);
+
+            using (_context = new PerfectSoundContext(options))
+            {
+                UserService _UUSS = new UserService(_context, _mapper);
+                //assert & act
+                var validUser = _UUSS.Insert(NewUser);
+                Assert.NotNull(validUser);
+            }
+        }
+        
+        [Theory]
+        [InlineData("Aaida", "Merzic", "MerzicNaida", "Merzic123@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
+        [InlineData("Maida", "Aerzic", "naidanaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1, "LastName")]
+        public void AddUser_CapitalLetter_ShouldFail(string firstName, string lastName, string userName,
+            string email, string pass, string passConf, string phone, int typeid, string param)
+        {
+
+            var options = new DbContextOptionsBuilder<PerfectSoundContext>()
+            .UseInMemoryDatabase(databaseName: "UserListContext6")
+            .Options;
+
+            //arange
+            UserUpsertRequest NewUser = new UserUpsertRequest
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                UserName = userName,
+                Email = email,
+                Password = pass,
+                PasswordConfirm = passConf,
+                Phone = phone,
+                UserTypeId = typeid
+            };
+
+            using (_context = new PerfectSoundContext(options))
+            {
+                UserService _UUSS = new UserService(_context, _mapper);
+                //assert & act
+                Assert.Throws<ArgumentException>(() => _UUSS.Insert(NewUser));
+            }
+        }*/
+
     }
 }
