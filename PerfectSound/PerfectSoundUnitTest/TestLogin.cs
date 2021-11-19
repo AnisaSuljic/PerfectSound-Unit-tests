@@ -36,7 +36,7 @@ namespace PerfectSoundUnitTest
 
         [Theory]
         [InlineData("MerzicNaida", "Merzic")]
-        public void Login_Should_Work(string username, string password)
+        public async System.Threading.Tasks.Task Login_Should_WorkAsync(string username, string password)
         {
             var options = new DbContextOptionsBuilder<PerfectSoundContext>()
             .UseInMemoryDatabase(databaseName: "LoginContext1")
@@ -70,18 +70,18 @@ namespace PerfectSoundUnitTest
                 UserService _userv = new UserService(_context, _mapper);
                 //assert & act
                 var validUser = _userv.Login(username, password);
-                Assert.NotNull(validUser);
+                await Assert.IsType<System.Threading.Tasks.Task<PerfectSound.Model.Model.User>>(validUser);
             }
 
         }
 
         [Theory]
-        [InlineData("MerzicNaida123", "Merzic")]
+        [InlineData("MerzicNaida1", "Merzic")]
         [InlineData("MerzicNaida", "Merzic123")]
-        public void Login_Should_Fail(string username, string password)
+        public async System.Threading.Tasks.Task Login_Should_Fail(string username, string password)
         {
             var options = new DbContextOptionsBuilder<PerfectSoundContext>()
-            .UseInMemoryDatabase(databaseName: "LoginContext1")
+            .UseInMemoryDatabase(databaseName: "LoginContext2")
             .Options;
             // Insert seed data into the database using one instance of the context
             using (_context = new PerfectSoundContext(options))
@@ -111,7 +111,7 @@ namespace PerfectSoundUnitTest
             {
                 UserService _UUSS = new UserService(_context, _mapper);
                 //assert & act
-                Assert.ThrowsAsync<ArgumentException>(() => _UUSS.Login(username, password));
+                await Assert.ThrowsAsync<ArgumentException>(() => _UUSS.Login(username, password));
             }
 
         }
