@@ -76,7 +76,7 @@ namespace PerfectSoundUnitTest
         //}
 
         [Theory]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1)]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1)]
         public void AddUser_EmptyFields_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid)
         {
@@ -109,13 +109,13 @@ namespace PerfectSoundUnitTest
         }
         
         [Theory]
-        [InlineData("", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1, "FirstName")]
-        [InlineData("Naida", "", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 1, "LastName")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "", "Testing193!", "Testing193!", "123456", 1, "Email")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "", "Testing193!", "123456", 1, "Password")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "", "123456", 1, "PasswordConfirm")]
+        [InlineData("", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "FirstName")]
+        [InlineData("Naida", "", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "LastName")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Email")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "", "Testing193!", "+91 (123) 456-7890", 1, "Password")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "", "+91 (123) 456-7890", 1, "PasswordConfirm")]
         [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "", 1, "Phone")]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "123456", 0, "UserTypeId")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 0, "UserTypeId")]
         public void AddUser_EmptyFields_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -145,7 +145,7 @@ namespace PerfectSoundUnitTest
         }
 
         [Theory]
-        [InlineData("Anisa", "Suljic", "AnisaAnisa", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1, "PasswordConfirm")]
+        [InlineData("Anisa", "Suljic", "AnisaAnisa", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "PasswordConfirm")]
         public void AddUser_MatchPasswords_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -179,7 +179,7 @@ namespace PerfectSoundUnitTest
         }
         
         [Theory]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "012", "123456", 1, "PasswordConfirm")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "012", "+91 (123) 456-7890", 1, "PasswordConfirm")]
         public void AddUser_MatchPasswords_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -209,7 +209,7 @@ namespace PerfectSoundUnitTest
         }
 
         [Theory]
-        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
+        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Username")]
         //[InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "012", "123456", 1, "PasswordConfirm")]
         public void AddUser_ExistingFields_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
@@ -266,8 +266,8 @@ namespace PerfectSoundUnitTest
         }
         
         [Theory]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
-        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida@gmail.com", "Testing193!", "012", "123456", 1, "Email")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Username")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida@gmail.com", "Testing193!", "012", "+91 (123) 456-7890", 1, "Email")]
         public void AddUser_ExistingFields_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -323,7 +323,7 @@ namespace PerfectSoundUnitTest
         
         
         [Theory]
-        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
+        [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Username")]
         public void AddUser_Format_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -379,9 +379,10 @@ namespace PerfectSoundUnitTest
         }
 
         [Theory]
-        [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123gmail.com", "Testing193!", "Testing193!", "123456", 1, "Username")]
-        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail", "Testing193!", "Testing193!", "123456", 1, "Email")]
-        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail.com", "123", "123", "123456", 1, "Email")]
+        [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Username")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Email")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail.com", "123", "123", "+91 (123) 456-7890", 1, "Email")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail.com", "Testing193", "Testing193", "123456", 1, "Email")]
         public void AddUser_Format_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {

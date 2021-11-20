@@ -78,6 +78,8 @@ namespace PerfectSoundUnitTest
         [Theory]
         [InlineData("MerzicNaida1", "Merzic")]
         [InlineData("MerzicNaida", "Merzic123")]
+        [InlineData("MerzicNaida", "")]
+        [InlineData("", "Merzic123")]
         public async System.Threading.Tasks.Task Login_Should_Fail(string username, string password)
         {
             var options = new DbContextOptionsBuilder<PerfectSoundContext>()
