@@ -125,6 +125,13 @@ namespace PerfectSound.Services
             {
                 throw new ArgumentException("Invalid parameter ", "Phone");
             }
+            else
+            {
+                if (!Regex.IsMatch(entity.Phone, "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"))
+                {
+                    throw new ArgumentException("Invalid parameter ");
+                }
+            }
             if (entity.UserTypeId == 0)
             {
                 throw new ArgumentException("Invalid parameter ", "UserTypeId");
@@ -198,6 +205,9 @@ namespace PerfectSound.Services
 
         public async Task<Model.Model.User> Login(string username, string password)
         {
+            if(string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Invalid username or password. User does not exist");
+
             var entity = await _context.Users.Include(u=>u.UserType).FirstOrDefaultAsync(x => x.UserName == username);
 
             if (entity == null)
