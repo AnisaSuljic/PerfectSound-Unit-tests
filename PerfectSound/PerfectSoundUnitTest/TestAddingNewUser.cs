@@ -41,39 +41,6 @@ namespace PerfectSoundUnitTest
             }
         }
 
-        //[Fact]
-        //public void Test1()
-        //{         
-
-        //    var options = new DbContextOptionsBuilder<PerfectSoundContext>()
-        //    .UseInMemoryDatabase(databaseName: "UserListContext")
-        //    .Options;
-
-        //    // Insert seed data into the database using one instance of the context
-        //    using (_context = new PerfectSoundContext(options))
-        //    {
-        //        _context.Users.Add(new PerfectSound.Database.User {
-        //            UserId = 1,
-        //            FirstName = "Anisa",
-        //            LastName = "Suljic",
-        //            Email = "anisa@gmail.com",
-        //            Phone = "123456",
-        //            UserName = "AnisaSuljic",
-        //            UserTypeId = 1
-        //        });
-
-        //        _context.SaveChanges();
-
-        //    }
-        //    using (_context = new PerfectSoundContext(options))
-        //    {
-        //        UserService _UUSS = new UserService(_context, _mapper);
-        //        List<User> userssss = _UUSS.Get(null);
-
-        //        Assert.Equal(1, userssss.Count);
-        //    }
-
-        //}
 
         [Theory]
         [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1)]
@@ -111,6 +78,7 @@ namespace PerfectSoundUnitTest
         [Theory]
         [InlineData("", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "FirstName")]
         [InlineData("Naida", "", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "LastName")]
+        [InlineData("Naida", "Merzic", "", "MerzicNaida@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "UserName")]
         [InlineData("Naida", "Merzic", "MerzicNaida", "", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Email")]
         [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "", "Testing193!", "+91 (123) 456-7890", 1, "Password")]
         [InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "Testing193!", "", "+91 (123) 456-7890", 1, "PasswordConfirm")]
@@ -210,7 +178,6 @@ namespace PerfectSoundUnitTest
 
         [Theory]
         [InlineData("Anisa", "Suljic", "anisasuljic", "anisasuljic@gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Username")]
-        //[InlineData("Naida", "Merzic", "MerzicNaida", "MerzicNaida@gmail.com", "123", "012", "123456", 1, "PasswordConfirm")]
         public void AddUser_ExistingFields_ShouldWork(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
@@ -382,7 +349,7 @@ namespace PerfectSoundUnitTest
         [InlineData("Naida", "Merzic", "MerzicNaida", "Merzic123gmail.com", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Username")]
         [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail", "Testing193!", "Testing193!", "+91 (123) 456-7890", 1, "Email")]
         [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail.com", "123", "123", "+91 (123) 456-7890", 1, "Email")]
-        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail.com", "Testing193", "Testing193", "123456", 1, "Email")]
+        [InlineData("Naida", "Merzic", "naidanaida", "MerzicNaida2@gmail.com", "Testing193!", "Testing193!", "123456", 1, "Email")]
         public void AddUser_Format_ShouldFail(string firstName, string lastName, string userName,
             string email, string pass, string passConf, string phone, int typeid, string param)
         {
