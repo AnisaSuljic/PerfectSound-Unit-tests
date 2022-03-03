@@ -1,9 +1,10 @@
 # PerfectSound-Project
 
+#### The main project consists of a desktop and mobile application, but in this case part of the project (desktop application - WinForms) was used to demonstrate UNIT TESTING.
+
 ## Idea
 
 -Read more about [PerfectSound](https://edufit-my.sharepoint.com/:b:/g/personal/anisa_suljic_edu_fit_ba/EeRZ9t7B3NRCuuT7vkYrd70Bja-6C0N3_9x3qmSUJ1gXOg?e=41VySf)
-
 
 ## Documentation:
 
